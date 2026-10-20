@@ -1,89 +1,87 @@
 <?php
-declare(strict_types=1);
-
 class User {
-    private PDO $db;
-    private string $table = 'users';
+    private $conn;
+    private $table = "users";
 
-    // Dependency Injection: Pass the PDO connection into the User class when creating it
-    public function __construct(PDO $db) {
-        $this->db = $db;
+    // Constructor receives the PDO connection from $database->enterConnection()
+    public function __construct($db) {
+        $this->conn = $db;
     }
 
-    /**
-     * Task 4 Logic: Register a new student
-     */
-    public function register(string $name, string $matricNumber, string $password): array {
-        // 1. Check if this Matric Number is already registered
-        $checkSql = "SELECT id FROM {$this->table} WHERE matric_number = :matric_number LIMIT 1";
-        $checkStmt = $this->db->prepare($checkSql);
-        $checkStmt->execute(['matric_number' => $matricNumber]);
+    // Task 4: Register a new student
+    public function register($name, $matric_number, $password) {
+        // 1. Check if matric_number already exists in the users table
+        $checkQuery = "SELECT id FROM " . $this->table . " WHERE matric_number = :matric_number LIMIT 1";
+        $checkStmt = $this->conn->prepare($checkQuery);
+        $checkStmt->execute([
+            ':matric_number' => $matric_number
+        ]);
 
-        if ($checkStmt->fetch()) {
+        if ($checkStmt->fetch(PDO::FETCH_ASSOC)) {
             return [
                 'success' => false,
-                'status'  => 409, // 409 Conflict
-                'message' => 'A user with this Matric Number is already registered.'
+                'message' => 'This Matric Number is already registered.'
             ];
         }
 
-        // 2. Scramble the password using PHP's built-in bcrypt algorithm (Task 4 requirement)
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        // 2. Scramble the password using password_hash() (Task 4 requirement)
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // 3. Insert the new user with the default role of 'student' (Task 4 requirement)
-        $insertSql = "INSERT INTO {$this->table} (name, matric_number, password, role) 
-                      VALUES (:name, :matric_number, :password, :role)";
-        
-        $insertStmt = $this->db->prepare($insertSql);
-        $insertStmt->execute([
-            'name'          => $name,
-            'matric_number' => $matricNumber,
-            'password'      => $hashedPassword,
-            'role'          => 'student'
+        // 3. Save user to the users table with default role of 'student' (Task 4 requirement)
+        $query = "INSERT INTO " . $this->table . " (name, matric_number, password, role) 
+                  VALUES (:name, :matric_number, :password, :role)";
+
+        $stmt = $this->conn->prepare($query);
+        $saved = $stmt->execute([
+            ':name'          => $name,
+            ':matric_number' => $matric_number,
+            ':password'      => $hashed_password,
+            ':role'          => 'student'
         ]);
 
+        if ($saved) {
+            return [
+                'success' => true,
+                'message' => 'Registration successful!'
+            ];
+        }
+
         return [
-            'success' => true,
-            'status'  => 201, // 201 Created
-            'message' => 'Registration successful! You can now log in.',
-            'user_id' => (int) $this->db->lastInsertId()
+            'success' => false,
+            'message' => 'Failed to register user.'
         ];
     }
 
-    /**
-     * Task 5 Logic: Verify Matric Number & Password
-     */
-    public function login(string $matricNumber, string $password): array {
+    // Task 5: Verify login credentials
+    public function login($matric_number, $password) {
         // 1. Search the database for the submitted matric_number (Task 5 requirement)
-        $sql = "SELECT id, name, matric_number, password, role 
-                FROM {$this->table} 
-                WHERE matric_number = :matric_number 
-                LIMIT 1";
-        
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute(['matric_number' => $matricNumber]);
-        $user = $stmt->fetch();
+        $query = "SELECT id, name, matric_number, password, role 
+                  FROM " . $this->table . " 
+                  WHERE matric_number = :matric_number 
+                  LIMIT 1";
 
-        // 2. Use password_verify() to check the submitted password against the hash (Task 5 requirement)
-        if (!$user || !password_verify($password, $user['password'])) {
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([
+            ':matric_number' => $matric_number
+        ]);
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // 2. Use password_verify() to check the password (Task 5 requirement)
+        if ($user && password_verify($password, $user['password'])) {
+            // Remove the password hash before returning user data
+            unset($user['password']);
+
             return [
-                'success' => false,
-                'status'  => 401, // 401 Unauthorized
-                'message' => 'Invalid Matric Number or password.'
+                'success' => true,
+                'message' => 'Login successful!',
+                'user'    => $user
             ];
         }
 
-        // 3. Return the user details (without the password hash!) so login_process.php can set the session
         return [
-            'success' => true,
-            'status'  => 200,
-            'message' => 'Login successful!',
-            'user'    => [
-                'id'            => (int) $user['id'],
-                'name'          => $user['name'],
-                'matric_number' => $user['matric_number'],
-                'role'          => $user['role']
-            ]
+            'success' => false,
+            'message' => 'Invalid Matric Number or Password.'
         ];
     }
 }
