@@ -11,7 +11,7 @@
             $statement=$this->connect->prepare($request);// preparing the query to be executed 
             $statement->execute();// executing the query
             //returning the result of the query in an array format which would then be converted to a json format to the person who requested for it.
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $statement->fetchAll();
         }
     }
 ?>
