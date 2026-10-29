@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#faf7f2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Righteous&family=Roboto+Serif:opsz,wght@8..144,600&family=Secular+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Pay for order | U.I Cafe</title>
+</head>
+<body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2.2l2.1 10.2a1.5 1.5 0 0 0 1.5 1.2h8.2a1.5 1.5 0 0 0 1.4-1l1.8-6.4H6.2"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></symbol><symbol id="i-funnel" viewBox="0 0 24 24"><path d="M4 5h16l-6.2 7.4V19l-3.6-1.8v-4.8z"/></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c1.2-3.6 4-5.4 7-5.4s5.8 1.8 7 5.4"/></symbol><symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 6a9.6 9.6 0 0 1 1.4-.1c6 0 9.5 6.1 9.5 6.1a16 16 0 0 1-3.2 3.7M6.6 7.4A16 16 0 0 0 2.5 12s3.5 6.5 9.5 6.5c1.5 0 2.8-.4 4-1M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol><symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol><symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol><symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol><symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12.2a1.5 1.5 0 0 0 1.5 1.3h7a1.5 1.5 0 0 0 1.5-1.3L18 7M9 7V4.5h6V7"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></symbol><symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5v10"/><circle cx="12" cy="19" r="1" fill="currentColor"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol><symbol id="i-cup" viewBox="0 0 24 24"><path d="M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5V9Z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16M8 4.5v2M11 4.5v2"/></symbol><symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.3 2.5 2.5 4.5-5"/></symbol><symbol id="i-queue" viewBox="0 0 24 24"><path d="M5 6h14M5 12h14M5 18h9"/></symbol><symbol id="i-logout" viewBox="0 0 24 24"><path d="M10 4H6.5A1.5 1.5 0 0 0 5 5.5v13A1.5 1.5 0 0 0 6.5 20H10M15 8l4 4-4 4M19 12H9"/></symbol><symbol id="i-bank" viewBox="0 0 24 24"><path d="M3.5 9.5 12 4l8.5 5.5M5.5 10v7M10 10v7M14 10v7M18.5 10v7M3.5 20h17"/></symbol><symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M3 10.5h18M6.5 15h3"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol><symbol id="i-door" viewBox="0 0 24 24"><path d="M10 4H6.5A1.5 1.5 0 0 0 5 5.5v13A1.5 1.5 0 0 0 6.5 20H10M15 8l4 4-4 4M19 12H9"/></symbol></svg>
+    <div class="app">
+        <header class="topbar">
+            <a class="brand" href="menu.html" aria-label="U.I Cafe, University of Ibadan"><span class="brand__badge" aria-hidden="true">UI</span><span class="brand__text"><b>U.I CAFE</b><small>University of Ibadan</small></span></a>
+            <a class="round-btn round-btn--sm" href="cart.html" aria-label="Back to cart"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></a>
+        </header>
+
+        <main id="pay-body" class="pay-main" hidden>
+            <div class="pay-title">
+                <h1 class="page-title">Pay for order</h1>
+                <span class="status-pill st-paid" style="--x:0">Awaiting Payment</span>
+            </div>
+
+            <section class="card" aria-label="Order summary">
+                <div class="card__head"><span id="pay-items">0 items in cart</span><a href="cart.html">View details</a></div>
+                <ul class="lines" id="pay-lines"></ul>
+                <div class="tot">
+                    <div class="tot-row"><span>Subtotal</span><span id="pay-subtotal">₦0</span></div>
+                    <div class="tot-row"><span>Service &amp; Tax</span><span class="free">Free</span></div>
+                    <div class="tot-grand"><span>Total Payable</span><div><strong id="pay-total">₦0</strong><small>VAT included</small></div></div>
+                </div>
+            </section>
+
+            <h2 class="method-title" id="method-title">Select payment method</h2>
+            <fieldset class="methods" aria-labelledby="method-title" id="methods">
+                <label class="method">
+                    <input type="radio" name="method" value="bank_transfer">
+                    <span class="who"><span class="ico"><svg class="i" aria-hidden="true"><use href="#i-bank"/></svg></span><span><b>Bank Transfer</b><span class="tag">Instant</span><small>Generate instant dynamic account</small></span></span>
+                    <span class="ring" aria-hidden="true"></span>
+                </label>
+                <label class="method">
+                    <input type="radio" name="method" value="card">
+                    <span class="who"><span class="ico"><svg class="i" aria-hidden="true"><use href="#i-card"/></svg></span><span><b>Debit / Credit Card</b><small>Mastercard, Visa, Verve</small></span></span>
+                    <span class="ring" aria-hidden="true"></span>
+                </label>
+            </fieldset>
+            <p class="field-error" id="method-error" role="alert"></p>
+        </main>
+
+        <div id="pay-empty" class="empty-state" hidden>
+            <p>There is no order to pay for.</p>
+            <a class="btn btn-primary" style="width:auto" href="menu.html">Browse the menu</a>
+        </div>
+
+        <div class="bottom-bar pay-bar" id="pay-bar" hidden>
+            <button type="button" id="btn-pay" class="btn btn-split">
+                <span class="left"><span class="tile"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg></span><span id="pay-label">Pay</span></span>
+                <svg class="i" aria-hidden="true"><use href="#i-chev-r"/></svg>
+            </button>
+            <button type="button" id="btn-cancel" class="text-btn">Cancel order</button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>
