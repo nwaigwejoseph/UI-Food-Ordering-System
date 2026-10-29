@@ -43,8 +43,7 @@ if ($result["success"]) {
     http_response_code(201);
     echo json_encode([
         "status"  => "success",
-        "message" => $result["message"],
-        "user_id" => $result["user_id"]
+        "message" => $result["message"]
     ]);
 } else {
     http_response_code(400);
