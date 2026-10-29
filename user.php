@@ -39,13 +39,14 @@ class User {
             ':role'          => 'student'
         ]);
 
-        if ($saved) {
+       if ($saved) {
             return [
                 'success' => true,
-                'message' => 'Registration successful!'
+                'message' => 'Registration successful!',
+                'user_id' => $this->conn->lastInsertId()
             ];
         }
-
+        
         return [
             'success' => false,
             'message' => 'Failed to register user.'
